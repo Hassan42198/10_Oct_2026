@@ -1,1 +1,19 @@
-# 10_Oct_2026
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test HTML</title>
+</head>
+<body style="font-family: Arial; text-align: center; margin-top: 100px;">
+
+    <h1>Test HTML réussi !</h1>
+    <p>Si tu vois ce message, ton fichier HTML fonctionne.</p>
+
+    <button onclick="alert('JavaScript fonctionne aussi !')">
+        Tester JavaScript
+    </button>
+
+</body>
+</html>
