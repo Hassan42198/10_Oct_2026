@@ -2,18 +2,394 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test HTML</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#faf7f3">
+  <title>Pour Aya ♡</title>
+
+  <style>
+    :root {
+      --paper: #faf7f3;
+      --ink: #4e3b37;
+      --muted: #9e8175;
+      --rose: #b76e79;
+      --line: #eadbd3;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      min-height: 100%;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      min-height: 100svh;
+      display: grid;
+      place-items: center;
+      padding: 20px 14px;
+      overflow: hidden;
+      background:
+        radial-gradient(
+          ellipse at 12% 15%,
+          rgba(232, 199, 187, .22),
+          transparent 35%
+        ),
+        radial-gradient(
+          ellipse at 88% 85%,
+          rgba(220, 174, 178, .18),
+          transparent 38%
+        ),
+        var(--paper);
+      color: var(--ink);
+      font-family: Georgia, 'Times New Roman', serif;
+    }
+
+    .card {
+      position: relative;
+      width: min(100%, 430px);
+      min-height: 440px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 42px 26px;
+      text-align: center;
+      background: rgba(255, 255, 255, .72);
+      border: 1px solid rgba(234, 219, 211, .95);
+      box-shadow: 0 20px 65px rgba(91, 61, 52, .07);
+      border-radius: 5px;
+      isolation: isolate;
+    }
+
+    .card::before,
+    .card::after {
+      content: '✦';
+      position: absolute;
+      color: #d2ad9e;
+      font-size: 13px;
+      opacity: .8;
+    }
+
+    .card::before {
+      top: 17px;
+      left: 18px;
+    }
+
+    .card::after {
+      right: 18px;
+      bottom: 17px;
+    }
+
+    .content {
+      width: 100%;
+    }
+
+    .eyebrow {
+      margin: 0 0 25px;
+      color: var(--muted);
+      font: 10px/1.6 Arial, sans-serif;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(25px, 7vw, 32px);
+      line-height: 1.45;
+      font-weight: normal;
+    }
+
+    .intro {
+      margin: 15px auto 0;
+      max-width: 275px;
+      color: #907d74;
+      font: 12px/1.9 Arial, sans-serif;
+      letter-spacing: .25px;
+    }
+
+    .divider {
+      width: 36px;
+      height: 1px;
+      margin: 27px auto;
+      background: #c7a18d;
+    }
+
+    button {
+      max-width: 100%;
+      padding: 14px 19px;
+      border: 1px solid #59423c;
+      border-radius: 2px;
+      background: #59423c;
+      color: #fffaf7;
+      font: 10px/1.4 Arial, sans-serif;
+      letter-spacing: 1.6px;
+      cursor: pointer;
+      transition:
+        background .25s ease,
+        transform .25s ease,
+        box-shadow .25s ease;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    button:hover {
+      background: #795c53;
+      box-shadow: 0 7px 18px #59423c1c;
+    }
+
+    button:active {
+      transform: scale(.98);
+    }
+
+    button:focus-visible {
+      outline: 2px solid var(--rose);
+      outline-offset: 4px;
+    }
+
+    #surprise {
+      display: none;
+    }
+
+    #surprise.show {
+      display: block;
+      animation: reveal 1.2s ease both;
+    }
+
+    .heart-wrap {
+      margin: 0 0 18px;
+    }
+
+    .big-heart {
+      display: inline-block;
+      color: var(--rose);
+      font-family: Arial, sans-serif;
+      font-size: 48px;
+      line-height: 1;
+      text-shadow: 0 5px 22px #dba6aa77;
+      animation: heartbeat 1.6s ease-in-out infinite;
+    }
+
+    .love-message {
+      margin: 0 auto;
+      max-width: 320px;
+      font-size: clamp(17px, 4.5vw, 19px);
+      line-height: 1.9;
+    }
+
+    .love-message em {
+      color: var(--rose);
+      font-style: italic;
+    }
+
+    .floating {
+      position: fixed;
+      bottom: -35px;
+      z-index: 5;
+      pointer-events: none;
+      animation: rise var(--duration, 5s) ease-in forwards;
+      will-change: transform, opacity;
+    }
+
+    @keyframes heartbeat {
+      0%, 100% {
+        transform: scale(1);
+      }
+
+      15% {
+        transform: scale(1.12);
+      }
+
+      30% {
+        transform: scale(1);
+      }
+
+      45% {
+        transform: scale(1.07);
+      }
+    }
+
+    @keyframes reveal {
+      from {
+        opacity: 0;
+        transform: translateY(14px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes rise {
+      0% {
+        opacity: 0;
+        transform: translate3d(0, 0, 0) rotate(0deg);
+      }
+
+      15% {
+        opacity: .85;
+      }
+
+      100% {
+        opacity: 0;
+        transform: translate3d(
+          var(--drift, 20px),
+          -115vh,
+          0
+        ) rotate(35deg);
+      }
+    }
+
+    @media (max-width: 360px) {
+      .card {
+        min-height: 410px;
+        padding: 36px 18px;
+      }
+
+      .eyebrow {
+        letter-spacing: 3px;
+      }
+
+      button {
+        padding: 13px 14px;
+        letter-spacing: 1px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+      }
+    }
+  </style>
 </head>
-<body style="font-family: Arial; text-align: center; margin-top: 100px;">
 
-    <h1>Test HTML réussi !</h1>
-    <p>Si tu vois ce message, ton fichier HTML fonctionne.</p>
+<body>
 
-    <button onclick="alert('JavaScript fonctionne aussi !')">
-        Tester JavaScript
-    </button>
+  <main class="card" aria-live="polite">
+
+    <!-- PREMIÈRE PAGE -->
+    <div class="content" id="first">
+
+      <p class="eyebrow">A little secret for you</p>
+
+      <h1>
+        Aya, j'ai quelque chose<br>
+        pour toi <span style="color:#b76e79">♡</span>
+      </h1>
+
+      <p class="intro">
+        Wa7ed sou2al sghir… ghir binatna.
+      </p>
+
+      <div class="divider"></div>
+
+      <button type="button" id="openButton">
+        ILA KATBGINI, KLIKI HNA ♡
+      </button>
+
+    </div>
+
+    <!-- DEUXIÈME PAGE : MESSAGE D'AMOUR -->
+    <section
+      id="surprise"
+      class="content"
+      aria-hidden="true"
+    >
+
+      <div class="heart-wrap">
+        <span class="big-heart">♥</span>
+      </div>
+
+      <p class="eyebrow">Ghir lik nti, Aya</p>
+
+      <h1 class="dear">Ayouta</h1>
+
+      <div class="divider"></div>
+
+      <p class="love-message">
+        W ila chi nhar chi wa7ed swelni 3la ta3rif dyal l’amour,
+        <br>
+        ghadi ngolihom b kol basata…
+        <br><br>
+        <em>L’amour howa Aya. ❤️</em>
+      </p>
+
+    </section>
+
+  </main>
+
+  <script>
+    const first = document.getElementById('first');
+    const surprise = document.getElementById('surprise');
+    const button = document.getElementById('openButton');
+
+    let opened = false;
+
+    function makeHearts() {
+      const symbols = ['♡', '♥', '❤', '✦'];
+
+      const colors = [
+        '#b76e79',
+        '#d9a7a5',
+        '#c79b84',
+        '#e8c5c8'
+      ];
+
+      for (let i = 0; i < 32; i++) {
+        setTimeout(() => {
+          const item = document.createElement('span');
+
+          item.className = 'floating';
+
+          item.textContent =
+            symbols[Math.floor(Math.random() * symbols.length)];
+
+          item.style.left = Math.random() * 100 + 'vw';
+
+          item.style.color =
+            colors[Math.floor(Math.random() * colors.length)];
+
+          item.style.fontSize =
+            (13 + Math.random() * 17) + 'px';
+
+          item.style.setProperty(
+            '--duration',
+            (4 + Math.random() * 3) + 's'
+          );
+
+          item.style.setProperty(
+            '--drift',
+            (Math.random() * 90 - 45) + 'px'
+          );
+
+          document.body.appendChild(item);
+
+          setTimeout(() => {
+            item.remove();
+          }, 7500);
+
+        }, i * 115);
+      }
+    }
+
+    button.addEventListener('click', () => {
+      if (opened) return;
+
+      opened = true;
+
+      first.style.display = 'none';
+
+      surprise.classList.add('show');
+
+      surprise.setAttribute('aria-hidden', 'false');
+
+      makeHearts();
+    });
+  </script>
 
 </body>
 </html>
